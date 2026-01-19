@@ -29,8 +29,6 @@ def format_transcript(transcript):
         formatted.append(f"[{entry.start:.2f}] {text}")
     return "\n".join(formatted)
 
-import sys
-
 def main():
     # Read URL from stdin
     url = sys.stdin.read().strip()
