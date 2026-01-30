@@ -24,9 +24,14 @@ def format_transcript(transcript):
     # Format the transcript into readable text
     formatted = []
     for entry in transcript:
-        # Replace newlines with spaces to ensure single-line entries
-        text = entry.text.replace('\n', ' ')
-        formatted.append(f"[{entry.start:.2f}] {text}")
+        # Handle both dict and object types
+        if isinstance(entry, dict):
+            text = entry['text'].replace('\n', ' ')
+            start = entry['start']
+        else:
+            text = entry.text.replace('\n', ' ')
+            start = entry.start
+        formatted.append(f"[{start:.2f}] {text}")
     return "\n".join(formatted)
 
 def main():
