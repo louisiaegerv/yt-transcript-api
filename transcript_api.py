@@ -49,6 +49,13 @@ async def get_transcript(request: TranscriptRequest):
             )
             
         logger.info(f"Successfully fetched transcript for URL: {request.url}")
+        
+        # Log a preview of the transcript (first 200 chars)
+        transcript_preview = result.stdout[:200].replace('\n', ' ')
+        if len(result.stdout) > 200:
+            transcript_preview += "..."
+        logger.info(f"Transcript preview: {transcript_preview}")
+        
         return {"transcript": result.stdout}
 
         # Get the current timestamp
